@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "iomanip": "cpp",
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "vector": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}
