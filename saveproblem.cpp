@@ -145,3 +145,43 @@ int uri_1176(int argc, char const *argv[])
     }
     return 0;
 }
+
+
+int uri_1189(int argc, char const *argv[])
+{
+    double matriz[12][12];
+    char op;
+    double sum = 0, valor;
+    cin >> op;
+
+    for (int i = 0; i < 12; i++){
+        for (int j = 0; j < 12; j++){
+            cin >> valor;
+            matriz[i][j] = valor;
+        }
+    }
+    int n = 1;
+    int j = 0;
+    int div = 0;
+    for (int i = 1; i < 11; i++){
+        j = 0;
+        while (j < n){
+            div++;
+            sum += matriz[i][j];
+            j++;
+        }
+        if (i < 5){
+            n++;
+        }
+        if (i > 5){
+            n--;
+        }
+    }
+    
+    if(op == 'S'){
+        cout << sum << endl;
+    } else{
+        cout << F(sum / div) << endl;
+    }
+    return 0;
+}
