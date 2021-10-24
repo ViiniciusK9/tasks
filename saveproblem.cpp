@@ -1,6 +1,8 @@
 #include <iostream>
 #include <iomanip>
 #include <math.h>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -37,6 +39,38 @@ int uri_1040(int argc, char const *argv[])
     return 0;
 }
 
+// uri 1958
+double transforma(string x){
+    double y;
+    std::istringstream iss(x);
+    iss >> y;
+    return y;
+}
+
+int main(int argc, char const *argv[])
+{
+    string x;
+    double a;
+    cin >> x;
+    std::cout.precision(4);
+    cout.setf(ios::scientific);
+    if(x == "-0"){
+        double a = transforma(x);
+        cout << uppercase << a << endl;
+        return 0;
+    } else if(x == "+0" || x == "0"){
+        cout << "+";
+        double a = transforma(x);
+        cout << uppercase << a << endl;
+        return 0;
+    }
+    a = transforma(x);
+    if(a>0.0){
+        cout << "+";
+    }
+    cout << uppercase << a << endl;
+    return 0;
+}
 
 
 
@@ -457,5 +491,46 @@ int uri_1189(int argc, char const *argv[])
     } else{
         cout << F(sum / div) << endl;
     }
+    return 0;
+}
+
+
+int uri_1973(int argc, char const *argv[])
+{
+    long long n;
+    long long carneiro = 0;
+    long long estrela = 0;
+    long long sum = 0;
+    cin >> n;
+    std::vector<long long int> vet(1000005);
+    std::vector<long long int> aux(1000005);
+    for(int i = 0; i < n; i++){
+        cin >> vet[i];
+        sum += vet[i];
+        aux[i] = 0; 
+    }
+    int i = 0;
+    while (i >= 0 && i <= n - 1){
+        if(vet[i] % 2 != 0 && vet[i] > 0){
+            if(aux[i] == 0){
+                estrela++;
+                aux[i] = 1;
+            }
+            carneiro++;
+            vet[i]--;
+            i++;
+        } else if (vet[i] % 2 == 0 && vet[i] > 0){
+            if(aux[i] == 0){
+                estrela++;
+                aux[i] = 1;
+            }
+            carneiro++;
+            vet[i]--;
+            i--;
+        } else{
+            break;
+        }
+    }
+    cout << estrela << " " << sum - carneiro << endl;
     return 0;
 }
