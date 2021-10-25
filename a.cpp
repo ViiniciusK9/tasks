@@ -9,43 +9,43 @@ using namespace std;
 #define DBG(x) cout << "[" << #x << "]: " << x << endl
 #define F(x) std::fixed <<std::setprecision(2)<<(x)
 
+int uri_2059(int argc, char const *argv[])
+{   
+    int p, j1, j2, r, a;
+    cin >> p >> j1 >> j2 >> r >> a;
 
-int uri_1973(int argc, char const *argv[])
-{
-    long long n;
-    long long carneiro = 0;
-    long long estrela = 0;
-    long long sum = 0;
-    cin >> n;
-    std::vector<long long int> vet(1000005);
-    std::vector<long long int> aux(1000005);
-    for(int i = 0; i < n; i++){
-        cin >> vet[i];
-        sum += vet[i];
-        aux[i] = 0; 
-    }
-    int i = 0;
-    while (i >= 0 && i <= n - 1){
-        if(vet[i] % 2 != 0 && vet[i] > 0){
-            if(aux[i] == 0){
-                estrela++;
-                aux[i] = 1;
+    if(p == 1){
+        if(r == 1){
+            if(a == 1){
+                cout << "Jogador 2 ganha!" << endl;
+            } else {
+                cout << "Jogador 1 ganha!" << endl;
             }
-            carneiro++;
-            vet[i]--;
-            i++;
-        } else if (vet[i] % 2 == 0 && vet[i] > 0){
-            if(aux[i] == 0){
-                estrela++;
-                aux[i] = 1;
+        } else if(r == 0 && a == 1){
+            cout << "Jogador 1 ganha!" << endl;
+        } else {
+            if((j1 + j2) % 2 == 0){
+                cout << "Jogador 1 ganha!" << endl;
+            } else {
+                cout << "Jogador 2 ganha!" << endl;
             }
-            carneiro++;
-            vet[i]--;
-            i--;
-        } else{
-            break;
         }
+    } else {
+       if(r == 1){
+            if(a == 1){
+                cout << "Jogador 2 ganha!" << endl;
+            } else {
+                cout << "Jogador 1 ganha!" << endl;
+            }
+        } else if(r == 0 && a == 1){
+            cout << "Jogador 1 ganha!" << endl;
+        } else {
+            if((j1 + j2) % 2 == 0){
+                cout << "Jogador 2 ganha!" << endl;
+            } else {
+                cout << "Jogador 1 ganha!" << endl;
+            }
+        } 
     }
-    cout << estrela << " " << sum - carneiro << endl;
     return 0;
 }
