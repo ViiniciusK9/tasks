@@ -419,3 +419,58 @@ int main(int argc, char const *argv[])
     
     return 0;
 } 
+
+
+int uri_1929(int argc, char const *argv[])
+{
+    int vet[4];
+    for(int i = 0; i < 4; i++){
+        cin >> vet[i];
+    }
+    int auxa, auxb, auxc, auxd;
+    for(int i = 0; i < 4; i++){
+        auxa = vet[0];
+        auxb = vet[1];
+        auxc = vet[2];
+        auxd = vet[3];
+        if(abs(vet[1]-vet[2]) < vet[0] && vet[0] < (vet[1]+vet[2])){
+            if(abs(vet[0]-vet[2]) < vet[1] && vet[1] < (vet[0]+vet[2])){
+                if(abs(vet[0]-vet[1]) < vet[2] && vet[2] < (vet[0]+vet[1])){
+                    cout << "S" << endl;
+                    return 0;
+                }
+            }
+        }
+        vet[0] = auxd;
+        vet[1] = auxa;
+        vet[2] = auxb;
+        vet[3] = auxc;
+    }
+    cout << "N" << endl;
+    return 0;
+}
+
+int hex_1957(int argc, char const *argv[])
+{
+    int a;
+    cin >> a;
+    
+    cout << uppercase << hex << a << endl;
+    return 0;
+}
+
+int notacaocientifica(int argc, char const *argv[])
+{
+    long double a;
+    cin >> a;
+    std::cout.precision(4);
+    cout.setf(ios::scientific);
+    if(a>0.0){
+        cout << "+";
+    }else if (a==0.0){
+        cout << "-";
+    }
+    
+    cout << uppercase << a << endl;
+    return 0;
+}

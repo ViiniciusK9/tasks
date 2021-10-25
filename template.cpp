@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <math.h>
+#include <algorithm>
 
 using namespace std;
 
