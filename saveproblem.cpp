@@ -1,6 +1,8 @@
 #include <iostream>
 #include <iomanip>
 #include <math.h>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -37,113 +39,38 @@ int uri_1040(int argc, char const *argv[])
     return 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// uri 1958
+double transforma(string x){
+    double y;
+    std::istringstream iss(x);
+    iss >> y;
+    return y;
+}
+
+int main(int argc, char const *argv[])
+{
+    string x;
+    double a;
+    cin >> x;
+    std::cout.precision(4);
+    cout.setf(ios::scientific);
+    if(x == "-0"){
+        double a = transforma(x);
+        cout << uppercase << a << endl;
+        return 0;
+    } else if(x == "+0" || x == "0"){
+        cout << "+";
+        double a = transforma(x);
+        cout << uppercase << a << endl;
+        return 0;
+    }
+    a = transforma(x);
+    if(a>0.0){
+        cout << "+";
+    }
+    cout << uppercase << a << endl;
+    return 0;
+}
 
 
 int uri_1133(int argc, char const *argv[])
