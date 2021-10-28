@@ -3,6 +3,7 @@
 #include <math.h>
 #include <vector>
 #include <algorithm>
+#include <stack>
 
 using namespace std;
 
@@ -399,5 +400,74 @@ int notacaocientifica(int argc, char const *argv[])
     }
     
     cout << uppercase << a << endl;
+    return 0;
+}
+
+
+
+int main(int argc, char const *argv[])
+{
+    stack<char> parent, col, chave;
+    string teste;
+    int t;
+    cin >> t;
+    bool ok;
+    for(int i = 0; i < t; i++){
+        cin >> teste;
+        ok = true;
+        for (int j = 0; j < (int)teste.size(); j++){
+            if(teste[j] == '('){
+                parent.push('(');
+            } else if(teste[j] == ')'){
+                if(parent.empty()){
+                    ok = false;
+                    break;
+                } else{
+                    parent.pop();
+                }
+            } else if(teste[j] == '['){
+                col.push('[');
+            } else if(teste[j] == ']'){
+                if(col.empty()){
+                    ok = false;
+                    break;
+                } else{
+                    col.pop();
+                }
+            } else if(teste[j] == '{'){
+                chave.push('{');
+            } else if(teste[j] == '}'){
+                if(chave.empty()){
+                    ok = false;
+                    break;
+                } else{
+                    chave.pop();
+                }
+            }
+        }
+        if(!parent.empty()){
+            ok = false;
+        }
+        if(!col.empty()){
+            ok = false;
+        }
+        if(!chave.empty()){
+            ok = false;
+        }
+        if(ok){
+            cout << 'S' << endl;
+        }else {
+            cout << 'N' << endl;
+        }
+        while(!parent.empty()){
+            parent.pop();
+        }
+        while(!col.empty()){
+            col.pop();
+        }
+        while(!chave.empty()){
+            chave.pop();
+        }
+    }
     return 0;
 }
