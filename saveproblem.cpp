@@ -468,6 +468,8 @@ int main(int argc, char const *argv[])
         while(!chave.empty()){
             chave.pop();
         }
+    }
+}
         
 int uri_1110(int argc, char const *argv[])
 {
