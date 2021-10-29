@@ -468,6 +468,69 @@ int main(int argc, char const *argv[])
         while(!chave.empty()){
             chave.pop();
         }
+        
+int uri_1110(int argc, char const *argv[])
+{
+    vector<int> vet;
+    vector<int> aux;
+    int n, num;
+    while(true){
+        cin >> n;
+        if (n == 0){
+            break;
+        }
+        for(int i = 1; i <= n; i++){
+            vet.push_back(i);
+        }
+        for(int i = 0; i < n-1; i++){
+            aux.push_back(vet[0]);
+            vet.erase(remove(vet.begin(), vet.end(), vet[0]), vet.end());
+            vet.push_back(vet[0]);
+            vet.erase(remove(vet.begin(), vet.end(), vet[0]), vet.end());
+        }
+        cout << "Discarded cards: ";
+        for(int i = 0; i < aux.size(); i++){
+            if(i == aux.size()-1){
+                cout << aux[i] << endl;
+            } else{
+                cout << aux[i] << ", ";
+            }
+        }
+        cout << "Remaining card: " << vet[0] << endl;
+        vet.clear();
+        aux.clear();
+    }
+    return 0;
+}
+
+
+int times(int argc, char const *argv[])
+{
+    int n, t;
+    vector <pair <int, string>> vet;
+    vector<string> aux;
+    int h;
+    string nome;
+    cin >> n >> t;
+
+    for(int i = 0; i < n; i++){
+        cin >> nome >> h;
+        vet.push_back(make_pair(h, nome));
+    }
+    sort(vet.rbegin(), vet.rend());
+    int c = 0;
+    for(int j = 1; j <= t; j++){
+        cout << "Time " << j << endl;
+        for(int i = c; i < n; i+= t){
+            aux.push_back(vet[i].second);
+        }
+        sort(aux.begin(), aux.end());
+        for(int x = 0; x < aux.size(); x++){
+            cout << aux[x] << endl;
+        }
+        aux.clear();
+        cout << endl;
+        c++;
     }
     return 0;
 }
