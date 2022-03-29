@@ -10,29 +10,30 @@ using namespace std;
 #define F(x) std::fixed <<std::setprecision(1)<<(x)
 
 int main(){
-    int matrix[10000][10000];
-	int t, n, aux;
+    
+	int t, n, aux, contador;
     cin >> t;
     for(int x = 0; x < t; x++){
-        int count = 0;
+        contador = 0;
         cin >> n;
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < n; j++){
-                cin >> matrix[i][j];
+        int matrix[n][n];
+        for(int g = 0; g < n; g++){
+            for(int h = 0; h < n; h++){
+                cin >> matrix[g][h];
             }
         }
         for(int i = 0; i < n; i++){
             for(int j = 0; j < n; j++){
                 for (int p = 0; p < n; p++){
                     for (int q = 0; q < n; q++){
-                        //if(matrix[i][j]>matrix[p][q]){
-                        //    count++;
-                        //}
+                        if(matrix[i][j]>matrix[p][q] && i <=p && j <= q){
+                            contador++;
+                        }
                     }
                 }
             }
         }
-        cout << count << endl;
+        cout << contador << '\n';
     }
 
 	return 0;
