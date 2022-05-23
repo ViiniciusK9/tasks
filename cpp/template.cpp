@@ -14,3 +14,5 @@ int main(int argc, char const *argv[])
     
     return 0;
 }
+
+// g++ -o nome.cpp nome.exe
