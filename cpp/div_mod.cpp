@@ -19,14 +19,11 @@ int main(int argc, char const *argv[])
         maior = 0;
         if(a > r){
             maior = r % a;
-        //}
-        //else if(a < l && r % a != 0){
-            //maior = (r / a) + (r % a);
         } else if(r % a == a - 1){
             maior = (r / a) + (r % a);
         } else {
             
-            int aux = (r + a) % a;
+            int aux = r % a;
             int aux_r = r - aux - 1;
             if(aux_r < l){
                 aux_r = r;
