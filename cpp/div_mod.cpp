@@ -9,6 +9,28 @@ using namespace std;
 #define DBG(x) cout << "[" << #x << "]: " << x << endl
 #define F(x) std::fixed <<std::setprecision(1)<<(x)
 
+
+int main(){
+    int n, l, r, x, resp, a, maior_1, maior_2;
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> l >> r >> a;
+        x = r - r % a - 1;
+        maior_1 = (r / a) + (r % a);
+        maior_2 = (x / a) + (x % a);
+        if(maior_1 > maior_2 || x < l){
+            cout << maior_1 << '\n';
+        } else {
+            cout << maior_2 << '\n';
+        } 
+        
+    }
+    
+    return 0;
+}
+
+/*
 int main(int argc, char const *argv[])
 {
     int n, i, l, r, a, j;
@@ -34,7 +56,7 @@ int main(int argc, char const *argv[])
     }
     return 0;
 }
-
+*/
 // g++ -o teste Teste.cpp
 // ./teste
 
