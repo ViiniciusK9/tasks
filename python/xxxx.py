@@ -1,9 +1,14 @@
-n = int(input())
-a, b = 0, 1
-for i in range(n - 1):
-    print(a, end=' ')
-    aux = a
-    a = b
-    b = aux + b
-    #a, b = b, a + b
-print(a)
+
+def a(n):
+    if n == 0:
+        return 4
+    if n == 1:
+        return 7
+    if n == 2:
+        return 2
+    
+    return (6 * a(n-1) - 12 * a(n-2) + 8 * a(n-3) + (n ** 2) * (2 ** n))
+
+x = a(10)
+
+print(x)
