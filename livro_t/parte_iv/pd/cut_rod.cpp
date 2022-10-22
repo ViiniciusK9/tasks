@@ -60,23 +60,68 @@ int memoized_cut_rod(int *p, int n){
     return memoized_cut_rod_aux(p, n, r);
 }
 
+int bottom_up_cut_rod(int *p, int n){
+    int r[n+1];
+    r[0] = 0;
+    for (int j = 1; j <= n; j++)
+    {
+        int q = MINF;
+        for (int i = 1; i <= j; i++)
+        {
+            q = max(q, (p[i] + r[j-i]));
+        }
+        r[j] = q;
+    }
+    return r[n];
+}
+
+int* extended_bottom_up_cut_rod(int *p, int n){
+    int r[n+1];
+    int s[n+1];
+    r[0] = 0;
+    for (int j = 1; j <= n; j++)
+    {
+        int q = MINF;
+        for (int i = 1; i <= j; i++)
+        {
+            if (q < p[i] + r[j - i])
+            {
+                q = p[i] + r[j-i];
+                s[j] = i;
+            }
+            
+        }
+        r[j] = q;
+    }
+    return r,  s;
+}
+
+void print_cut_rod_solution(int *p, int n){
+    int *r, *s;
+    (r, s) = extended_bottom_up_cut_rod(p, n);
+    while (n > 0)
+    {
+        cout << s[n] << '\n';
+        n -= s[n];
+    }
+}
 
 int main(int argc, char const *argv[])
 {
     int p[111];
 
-    int n;
+    int j, n;
+    cin >> j;
     cin >> n;
-
-    for (int i = 1; i <= n; i++)
+    for (int i = 1; i <= j; i++)
     {
         cin >> p[i];
     }
     
 
     //printf("%d\n", cut_rod(p, 4));
-
-    printf("%d\n", memoized_cut_rod(p, 50));
+    
+    print_cut_rod_solution(p, n);
     return 0;
 }
 
