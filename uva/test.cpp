@@ -5,14 +5,20 @@ using namespace std;
 #define DBG(x) cout << "[" << #x << "]: " << x << endl
 #define F(x) std::fixed <<std::setprecision(1)<<(x)
 
+typedef long long ll;
+
+
+
 int main(int argc, char const *argv[])
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int x = (int)(5*5*5*5*5*5) % 7;
 
-
+    cout << x << '\n';
     
+
     return 0;
 }
 
