@@ -10,25 +10,17 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    char c;
-    int vet[26], ans = 0;
+    int n, m;
+    cin >> n >> m;
 
-    memset(vet, 0, sizeof(vet));
-
-    while ((c = getchar()) != EOF)
+    for (int i = 0; i < n; i++)
     {
-        if (c >= 97 and c <= 122)
+        for (int j = 0; j < m; j++)
         {
-            vet[c-97]++;
+            //cout << "#" * m << '\n';
         }
+        
     }
-    for (int i = 0; i < 26; i++)
-    {
-        if (vet[i] != 0) {
-            ans++;
-        }
-    }
-    cout << ans << '\n';
     
 
     
