@@ -21,9 +21,8 @@ int main(int argc, char const *argv[])
 
     }
     cout << "HALL OF MURDERERS\n";
-    int resp = 0;
     for (auto &j : hall) {
-
+        
         if (!(hall_f.find(j.first) != hall_f.end())) {
             cout << j.first << " " << j.second << '\n';
         }
