@@ -10,50 +10,52 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    int n, num, aux, deuruim, qnt;
+    int n, num, qnt;
 
     while (cin >> n)
     {   
-        stack<int> p;
-        aux = 1;
         while (true)
         {
+            stack<int> p;
             qnt = 0;
             cin >> num;
-            if (n == 0)
+            if (num == 0)
             {
                 break;
             }
-            qnt++;
-            while (true)
+            int aux = 1;
+            p.push(aux);
+            aux++;
+            while (qnt < n and aux <= n)
             {
-
-                if (p.empty())
+                if (!p.empty())
                 {
-                    p.push(aux);
-                }
-                if (p.top() > num)
-                {
-                    break;
-                }
-                if (p.top() == num)
-                {
-                    p.pop();
+                    if (p.top() == num)
+                    {
+                        p.pop();
+                        cin >> num;
+                        qnt++;
+                    } else {
+                        p.push(aux);
+                        aux++;
+                    }
+                    
                 } else {
                     p.push(aux);
                     aux++;
-                }
-                if (qnt < n)
-                {
-                    cin >> num;
-                    qnt++;
-                } else {
-                    break;
-                }
-                
+                }        
+            }
+            if (qnt < n)
+            {
+                /* code */
             }
             
-            
+            if (p.empty())
+            {
+                cout << "YES\n";
+            } else {
+                cout << "NO\n";
+            }
             
         }
         
