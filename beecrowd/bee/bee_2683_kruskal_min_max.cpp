@@ -5,12 +5,13 @@ using namespace std;
 #define DBG(x) cout << "[" << #x << "]: " << x << endl
 #define F(x) std::fixed <<std::setprecision(1)<<(x)
 
-#define MAX 212345
+#define MAX 1123456
 
 typedef pair<int, int> ii;
-typedef pair<int, ii> iii; // iii(wei, ii(u, v))
+typedef pair<int, ii> iii; // iii(wei ii(u, v)) 
 
 int n, _p[MAX], _rank[MAX];
+
 vector<iii> eg;
 
 // MUF - Make Union Find
@@ -39,11 +40,30 @@ void _union(int u, int v) {
     }
 }
 
-long long kruskal() {
+long long kruskal_min() {
     long long ans = 0, u, v, wei;
     ii e;
-    for (u = 0; u < n; u++) _p[u] = u;
+    for (u = 0; u < n; u++) { _p[u] = u; _rank[u] = 0; }
     sort(eg.begin(), eg.end());
+    for (auto &it : eg) {
+        e = it.second;
+        wei = it.first;
+        u = e.first; v = e.second;
+        if (_find(u) != _find(v))
+        {
+            _union(u, v);
+            ans += wei;
+        }
+    }
+    return ans;
+}
+
+long long kruskal_max() {
+    long long ans = 0, u, v, wei;
+    ii e;
+    for (u = 0; u < n; u++) { _p[u] = u; _rank[u] = 0; }
+    sort(eg.begin(), eg.end());
+    reverse(eg.begin(), eg.end());
     for (auto &it : eg) {
         e = it.second;
         wei = it.first;
@@ -61,29 +81,18 @@ int main(int argc, char const *argv[])
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    long long m, x, y, z, total = 0;
-    
-    while (cin >> n >> m)
+
+    cin >> n;
+    int aux = n, u, v, wei;
+    while (aux--)
     {
-        if (n == m and m == 0)
-        {
-            break;
-        }
-        int aux = m;
-        total = 0;
-        while (aux--)
-        {
-            cin >> x >> y >> z;
-            total += z;
-            eg.push_back(iii(z, ii(x, y)));
-        }
-        
-        cout << total - kruskal() << '\n';
-        eg.clear();
+        cin >> u >> v >> wei;
+        u--; v--;
+        eg.push_back(iii(wei, ii(u, v)));
         
     }
-    
-    
+    cout << kruskal_max() << '\n';    
+    cout << kruskal_min() << '\n';
     return 0;
 }
 

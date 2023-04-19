@@ -5,7 +5,7 @@ using namespace std;
 #define DBG(x) cout << "[" << #x << "]: " << x << endl
 #define F(x) std::fixed <<std::setprecision(1)<<(x)
 
-#define MAX 212345
+#define MAX 123
 
 typedef pair<int, int> ii;
 typedef pair<int, ii> iii; // iii(wei, ii(u, v))
@@ -61,29 +61,18 @@ int main(int argc, char const *argv[])
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    long long m, x, y, z, total = 0;
+    long long m, x, y, z;
     
-    while (cin >> n >> m)
+    cin >> n >> m;
+    int aux = m;
+    while (aux--)
     {
-        if (n == m and m == 0)
-        {
-            break;
-        }
-        int aux = m;
-        total = 0;
-        while (aux--)
-        {
-            cin >> x >> y >> z;
-            total += z;
-            eg.push_back(iii(z, ii(x, y)));
-        }
-        
-        cout << total - kruskal() << '\n';
-        eg.clear();
-        
+        cin >> x >> y >> z;
+        eg.push_back(iii(z, ii(x, y)));
     }
     
-    
+    cout << kruskal() << '\n';
+    eg.clear();
     return 0;
 }
 

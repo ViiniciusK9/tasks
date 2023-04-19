@@ -61,7 +61,7 @@ int main(int argc, char const *argv[])
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    long long m, x, y, z, total = 0;
+    long long m, x, y, z;
     
     while (cin >> n >> m)
     {
@@ -70,15 +70,13 @@ int main(int argc, char const *argv[])
             break;
         }
         int aux = m;
-        total = 0;
         while (aux--)
         {
             cin >> x >> y >> z;
-            total += z;
             eg.push_back(iii(z, ii(x, y)));
         }
         
-        cout << total - kruskal() << '\n';
+        cout << kruskal() << '\n';
         eg.clear();
         
     }
@@ -88,3 +86,5 @@ int main(int argc, char const *argv[])
 }
 
 // g++ -O2 -Wall nome.cpp -o nome
+
+// PROBLEMA IDENTICO AO 1152 POREM NÃO PRECISA SUBTRAIR DO TOTAL
