@@ -5,10 +5,22 @@ using namespace std;
 #define DBG(x) cout << "[" << #x << "]: " << x << endl
 #define F(x) std::fixed <<std::setprecision(1)<<(x)
 
-bool comparacao(const pair<string, int> j, const pair<string, int> i) {
-    if (j.second != i.second)
+bool comparacao(const pair<int, pair<int, pair<int, string>>> j, const pair<int, pair<int, pair<int, string>>> i) {
+    if (j.first != i.first)
     {
-        return j.second > i.second;
+        return j.first > i.first;
+    } else {
+        if (j.second.first != i.second.first)
+        {
+            return j.second.first > i.second.first;
+        } else {
+            if (j.second.second.first != i.second.second.first)
+            {
+                return j.second.second.first > i.second.second.first;
+            } else {
+                return j.second.second.second < i.second.second.second;
+            }
+        }
     }
     return j.first < i.first;
 }
@@ -19,8 +31,10 @@ int main(int argc, char const *argv[])
     cin.tie(0);
 
     string des, ouro, prata, bronze;
-    map<string, int> medalhas;
-    vector<pair<string, int>> aux;
+
+    map<string, pair<int, pair<int, int>>> medalhas;
+
+    vector<pair<int, pair<int, pair<int, string>>>> vet;
 
     while (getline(cin, des))
     {
@@ -28,33 +42,23 @@ int main(int argc, char const *argv[])
         getline(cin, prata);
         getline(cin, bronze);
 
-        medalhas[ouro]+= 100;
-        medalhas[prata] += 10;
-        medalhas[bronze]++;
+        medalhas[ouro].first++;
+        medalhas[prata].second.first++;
+        medalhas[bronze].second.second++;
     }
-
     
     for (const auto &j : medalhas)
     {
-        aux.emplace_back(j);
+        vet.push_back(make_pair(j.second.first, make_pair(j.second.second.first, make_pair(j.second.second.second, j.first))));
     }
     
-    sort(aux.begin(), aux.end(), comparacao);
-
-    /*
-        Não funcionou
-        quando tem mais de 10 medalhas de prata conta como se fosse uma de ouro 
-        (e o mesmo acontece com 10 de bronze virando uma de prata), com isso o 
-        resultado final fica invalido. 
-    */
+    sort(vet.begin(), vet.end(), comparacao);
 
     cout << "Quadro de Medalhas\n";
-    for (const auto &j : aux)
+    for (const auto &j : vet)
     {
-        cout << j.first << " " << j.second / 100 << " " << (j.second % 100) / 10 << " " << (j.second % 100) % 10 << '\n';
+        cout << j.second.second.second << " " << j.first << " " << j.second.first << " " << j.second.second.first << '\n';
     }
-    
-
     
     return 0;
 }
