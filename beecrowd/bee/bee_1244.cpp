@@ -5,23 +5,32 @@ using namespace std;
 #define DBG(x) cout << "[" << #x << "]: " << x << endl
 #define F(x) std::fixed <<std::setprecision(1)<<(x)
 
+
+bool comparacao(pair<string, int> a, pair<string, int> b) {
+    if (a.second == b.second)
+    {
+        return a.second >= b.second;
+    }
+    return a.second > b.second;
+}
+
 int main(int argc, char const *argv[])
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
     int n;
-    string s;
+    string s, aux;
 
-    string vet[500];
 
     cin >> n;
 
     while (n+1)
     {
+        vector<pair<string, int>> vet;
         n--;
         getline(cin, s);
-        cout << s << '\n';
+        //cout << s << '\n';
         int i = 0;
         int fim = 0;
         int ant = 0;
@@ -30,30 +39,22 @@ int main(int argc, char const *argv[])
             fim++;
             if (s[j] == ' ' or s[j] == '\0' or s[j] == '\n')
             {
-                vet[i] = s.substr(ant, abs(fim - ant));
+                aux = s.substr(ant, abs(fim - ant));
+                vet.push_back({aux, aux.size()});
                 i++;
                 ant = fim;
             }
             
         }
 
-        for (int x = 0; x < i; x++)
-        {
-            int max = 0;
-            
-            for (int j = x; j < i; j++)
-            {
-                /* code */
-            }
-            
-        }
         
+        sort(vet.begin(), vet.end(), comparacao);
 
         for (int j = 0; j < i; j++)
         {
-            cout << vet[j] << '\n';
+            cout << vet[j].first << ' ';
         }
-        
+        cout << '\n';
     }
     
 
