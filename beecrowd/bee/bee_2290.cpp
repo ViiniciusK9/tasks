@@ -10,14 +10,10 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    int n, aux, first = 1;
+    long long n, aux;
     while (cin >> n)
     {
-        if (!first) {
-            cout << '\n';
-        }
-        first = 0;
-        set<int> s;
+        set<long long> s;
         
         for (int i = 0; i < n; i++)
         {
@@ -33,9 +29,17 @@ int main(int argc, char const *argv[])
                 s.insert(aux);
             }
         }
+        int ff = 0;
         for (auto &j : s)
         {
-            cout << j << " ";
+            if (!ff)
+            {
+                cout << j << " ";
+                ff = 1;
+            } else {
+                cout << j << '\n';
+            }
+            
         }
     }
     
