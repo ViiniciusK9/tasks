@@ -5,14 +5,7 @@ using namespace std;
 #define DBG(x) cout << "[" << #x << "]: " << x << endl
 #define F(x) std::fixed <<std::setprecision(1)<<(x)
 
-
-bool comparacao(pair<string, int> a, pair<string, int> b) {
-    if (a.second == b.second)
-    {
-        return a.second >= b.second;
-    }
-    return a.second > b.second;
-}
+typedef pair<string, int> si;
 
 int main(int argc, char const *argv[])
 {
@@ -22,38 +15,44 @@ int main(int argc, char const *argv[])
     int n;
     string s, aux;
 
-
     cin >> n;
-
-    while (n+1)
+    getline(cin, s);
+    while (n--)
     {
-        vector<pair<string, int>> vet;
-        n--;
+        vector<si> vet;
         getline(cin, s);
-        //cout << s << '\n';
         int i = 0;
-        int fim = 0;
         int ant = 0;
-        for (int j = 0; j < s.length()+1; j++)
+        for (int j = 1; j < s.length()+1; j++)
         {
-            fim++;
             if (s[j] == ' ' or s[j] == '\0' or s[j] == '\n')
             {
-                aux = s.substr(ant, abs(fim - ant));
-                vet.push_back({aux, aux.size()});
-                i++;
-                ant = fim;
+                aux = s.substr(ant, j-ant);
+                ant = j+1;
+                vet.push_back(si(aux, aux.size()));
+            }   
+        }
+
+        
+        for (int i = 0; i < vet.size(); i++)
+        {
+            for (int j = 0; j < vet.size()-1; j++)
+            {
+                if (vet[j].second < vet[j+1].second )
+                {
+                    si aux_s = vet[j];
+                    vet[j] = vet[j+1];
+                    vet[j+1] = aux_s;
+                }
             }
             
         }
 
-        
-        sort(vet.begin(), vet.end(), comparacao);
-
-        for (int j = 0; j < i; j++)
+        for (int j = 0; j < vet.size(); j++)
         {
-            cout << vet[j].first << ' ';
+            cout << (j == 0 ? "" : " ") << vet[j].first;
         }
+        
         cout << '\n';
     }
     
