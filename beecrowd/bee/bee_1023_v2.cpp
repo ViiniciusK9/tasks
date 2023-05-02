@@ -20,8 +20,7 @@ int main(int argc, char const *argv[])
         {
             cout << '\n';
         }
-        
-        vector<pair<int, int>> vet;
+        map<int, int> mapp;
         peo = mid = 0;
 
         for (int i = 0; i < n; i++)
@@ -30,19 +29,11 @@ int main(int argc, char const *argv[])
             mid += qnt;
             peo += p;
             qnt /= p;
-
-            vet.push_back(pair<int, int> (qnt, p));
+            mapp[qnt] += p;
         }
         cout << "Cidade# " << _case << ":\n";
         _case++;
         int aux = 0;
-        pair<int, int> ant;
-        sort(vet.begin(), vet.end());
-        map<int, int> mapp;
-        for (auto &j : vet)
-        {
-            mapp[j.first] += j.second;
-        }
 
         for (auto &j : mapp)
         {
