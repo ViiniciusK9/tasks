@@ -12,14 +12,15 @@ vector<int> eg[MAX];
 int vis[MAX], v, ans;
 
 int dfs(int s) {
-    ans ++;
     if (vis[s])
     {
-        return 1;
+        return 0;
     }
+    ans++;
     vis[s] = 1;
+    
     for (auto &j : eg[s]) {
-        //ans++;
+        //cout << j << '\n';
         dfs(j);
     }
     
@@ -45,9 +46,9 @@ int main(int argc, char const *argv[])
             eg[u].push_back(x);
             eg[x].push_back(u);
         }
-        ans = 1;
-        cout << dfs(n) << '\n';
-        cout << ans << '\n';
+        ans = 0;
+        dfs(n);
+        cout << (ans-1)*2 << '\n';
         for (int i = 0; i < MAX; i++) { eg[i].clear(); vis[i] = 0;} 
     }
     
