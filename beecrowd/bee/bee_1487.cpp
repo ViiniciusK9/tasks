@@ -20,7 +20,6 @@ int dp(int i, int w) {
     {
         return memo[i][w];
     }
-    
 
     ans = max(((w - vet[i].first) < 0 ? (dp(i+1, w)) : (dp(i, w-vet[i].first) + vet[i].second)), dp(i+1, w));
     
@@ -47,9 +46,7 @@ int main(int argc, char const *argv[])
 
         vet.clear();     
     }
-    
-
-    
+        
     return 0;
 }
 

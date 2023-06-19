@@ -9,35 +9,70 @@ using namespace std;
 
 int n, l, m, p;
 
-int custo[MAX], venda[MAX];
 int memo[MAX][MAX];
-vector<int> sol;
+int path[MAX][MAX];
+
+int venda[MAX];
+int custo[MAX];
 
 
-int dp(int ano, int i_a, int i_l) {
-    int op1, op2;
-    if (ano == n)
+int dp(int i, int w) {
+    if (i == n)
     {
-        return min(p, ((i_a == i_l) ? (p - venda[i_a -1]) : custo[i_a]));
+        return 0;
     }
-    if (memo[ano][i_a] != -1)
+
+    if (memo[i][w] != -1)
     {
-        return memo[ano][i_a];
+        return memo[i][w];
+    }
+
+    int ans2;
+    int ans1;
+
+    if (w == m)
+    {
+        ans2 = dp(i + 1, 1) + custo[0] + p - venda[w-1];
+        ans1 = INF;
+    } else {
+        ans2 = dp(i + 1, 1) + custo[0] + p - venda[w-1];
+        ans1 = dp(i + 1, w + 1) + custo[w];
+    }
+    if (ans2 <= ans1)
+    {
+        path[i][w] = 1;
+        return memo[i][w] = ans2;
+    } else {
+        return memo[i][w] = ans1;
     }
     
-    if (i_a == i_l)
-    {
-        op1 = dp(ano, 0, i_l) + p - venda[i_a-1];
-        op2 = INF;
-    } else if (i_a == 0) {
-        op2 = dp(ano + 1, i_a + 1, i_l) + custo[i_a];
-        op1 = INF;
-    } else {
-        op1 = dp(ano, 0, i_l) + p - venda[i_a-1];
-        op2 = dp(ano + 1, i_a + 1, i_l) + custo[i_a];
-    }
+    
+}
 
-    return memo[ano][i_a] = min(op1, op2);
+
+void pp(int ano, int idade) {
+    int flag = 1;
+    while (ano < n)
+    {
+        if (path[ano][idade] == 1)
+        {
+            cout << ((!flag) ? " " : "") << ano + 1;
+            ano++;
+            idade = 1;
+            flag = 0;
+        } else {
+            ano++;
+            idade++;
+        }
+        
+    }
+    if (flag)
+    {
+        cout << "0";
+    }
+    cout << "\n";
+    
+
 }
 
 int main(int argc, char const *argv[])
@@ -51,13 +86,30 @@ int main(int argc, char const *argv[])
         {
             cin >> custo[i];
         }
+
         for (int i = 0; i < m; i++)
         {
             cin >> venda[i];
         }
         memset(memo, -1, sizeof(memo));
-        cout << (dp(1, l, m)) << '\n';
+        memset(path, -1, sizeof(path));
+
+        cout << dp(0, l) << '\n';
+
+        pp(0, l);
+        /*
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j <= m; j++)
+            {
+                cout << path[i][j] << " ";
+            }
+            cout << "\n";
+        }
+        */
         
+        
+
     }
     
     return 0;
