@@ -1,15 +1,10 @@
-2
-4
-5
-lisbon london 6
-lisbon paris 5
-london paris 1
-london berlin 2
-paris berlin 10
-4
-5
-lisbon london 6
-lisbon paris 5
-london paris 1
-london berlin 2
-paris berlin 10
+5 5
+10 10 20 12 13
+0 1 9
+0 2 8
+1 2 1
+1 3 1
+2 3 7
+2 
+10 0 3 
+20 1 4

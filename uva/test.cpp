@@ -14,9 +14,7 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    int x = (int)(5*5*5*5*5*5) % 7;
 
-    cout << x << '\n';
     
 
     return 0;
