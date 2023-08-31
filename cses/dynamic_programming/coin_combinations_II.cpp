@@ -37,28 +37,23 @@ int main(int argc, char const *argv[])
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-
-    int x, n;
-    cin >> x >> n;
-
-    for (int i = 0; i < x; i++)
-    {
-        cin >> coins[i];
-    }
-
-    sort(coins, coins + x);
-
-    cout << solve(n) << '\n';
-
+ 
+    cin >> n >> num;
     for (int i = 0; i < n; i++)
     {
-        cout << count[i] << " "; 
+        cin >> vet[i];
+    }
+ 
+    sort(vet, vet+n);
+    
+    cout << dp(num) << '\n';
+
+    for (int i = 0; i <= num; i++)
+    {
+        cout << memo[i] << ' ';
     }
     
-
-    
     return 0;
-
 }
-
+ 
 // g++ -O2 -Wall nome.cpp -o nome
