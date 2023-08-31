@@ -5,40 +5,42 @@ using namespace std;
 #define DBG(x) cout << "[" << #x << "]: " << x << endl
 #define F(x) std::fixed <<std::setprecision(1)<<(x)
 
-const int MAXM = (int) 10e3+1;
-const int MAXV = (int) 10e5+1;
 
-int v, m;
-int vet[MAXM];
-int memo[MAXV];
+const int MAX = 1001;
+const int MAX2 = 2001;
 
 
-int dp(int l, int index)
+int n, t;
+
+int tam[MAX];
+int custo[MAX];
+int memo[MAX2];
+
+int dp(int l)
 {
     int ans = 0;
 
-    if (index == m)
-    {
-        return 0;
-    }
-
     if (l < 0)
     {
-        return 0;
+        return INT_MIN;
     }
 
     if (l == 0)
     {
-        return 1;
+        return 0;
     }
 
     if (memo[l] != -1)
     {
         return memo[l];
     }
+    
 
-    ans = max(dp(l - vet[index], index+1), dp(l, index+1));
-
+    for (int i = 0; i < n; i++)
+    {
+        ans = max(ans, dp(l - tam[i]) + custo[i]);
+    }
+    
     return memo[l] = ans;
 }
 
@@ -48,23 +50,16 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    cin >> v >> m;
+    cin >> n >> t;
 
-    for (int i = 0; i < m; i++)
+    for (int i = 0; i < n; i++)
     {
-        cin >> vet[i];
+        cin >> tam[i] >> custo[i];
     }
 
     memset(memo, -1, sizeof(memo));
 
-    cout << (dp(v, 0) == 1 ? "S" : "N") << '\n';
-
-    /*
-    for (int i = 0; i < m; i++)
-    {
-        cout << memo[i] << ' ';
-    }
-    */
+    cout << dp(t) << '\n';
 
     return 0;
 }
