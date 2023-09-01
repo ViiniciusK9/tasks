@@ -12,31 +12,25 @@ int n, x;
 
 int price[MAX], pages[MAX];
 
-int memo[100001][1001];
+int memo[1001][100001];
 
-int solve(int w, int i)
+int solve(int w)
 {
-    if (w < 0)
+    for (int i = 1; i <= n; i++)
     {
-        return -INF;
-    }
-
-    if (w == 0 || i == n)
-    {
-        return 0;
-    }
-
-    if (memo[w][i] != -1)
-    {
-        return memo[w][i];
+        for (int j = 1; j <= w; j++)
+        {
+            if (j < price[i])
+            {
+                memo[i][j] = memo[i-1][j];
+            } else 
+            {
+                memo[i][j] = max(pages[i] + memo[i - 1][j - price[i]], memo[i-1][j]);
+            }
+        }
     }
     
-
-    int ans = 0;
-
-    ans += max(solve(w-price[i], i+1) + pages[i], solve(w, i+1));
-    
-    return memo[w][i] = ans;
+    return memo[n][w];
 }
 
 int main(int argc, char const *argv[])
@@ -46,19 +40,19 @@ int main(int argc, char const *argv[])
 
     cin >> n >> x;
     
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
     {
         cin >> price[i];
     }
 
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
     {
         cin >> pages[i];
     }
 
-    memset(memo, -1, sizeof(memo));
+    memset(memo, 0, sizeof(memo));
 
-    cout << solve(x, 0) << '\n';
+    cout << solve(x) << '\n';
     
     return 0;
 }
