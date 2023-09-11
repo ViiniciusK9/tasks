@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define DBG(x) cout << "[" << #x << "]: " << x << endl
+#define F(x) std::fixed <<std::setprecision(3)<<(x)
+
+int main(int argc, char const *argv[])
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+
+
+    string s;
+    while (cin >> s)
+    {
+        if(s[2] == 'L') cout << "Esse eh o meu lugar\n";
+        else cout << "Oi, Leonard\n";
+    }
+    
+    
+    return 0;
+}
+
+// g++ -O2 -Wall nome.cpp -o nome

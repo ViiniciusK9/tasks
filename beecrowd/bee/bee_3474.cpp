@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define DBG(x) cout << "[" << #x << "]: " << x << endl
+#define F(x) std::fixed <<std::setprecision(2)<<(x)
+
+int main(int argc, char const *argv[])
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+
+    double v;
+    int n;
+
+    cin >> v >> n;
+
+    cout << F(v / n) << '\n';
+
+    
+    return 0;
+}
+
+// g++ -O2 -Wall nome.cpp -o nome

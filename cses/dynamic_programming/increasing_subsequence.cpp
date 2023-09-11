@@ -9,9 +9,10 @@ using namespace std;
 
 int n;
 int vet[MAX];
-int memo[MAX];
+int r[MAX];
+int t[MAX];
 
-
+/*
 int solve() // TIME LIMITED EXCEEDED
 {
     for (int i = 1; i < n; i++)
@@ -35,8 +36,57 @@ int solve() // TIME LIMITED EXCEEDED
     }
     return ans;
 }
+*/
+
+
 
 // BUSCAR UMA IMPLEMENTAÇÃO N LOG(N)
+
+int ceilIndex(int t[], int end, int s)
+{
+    int start = 0;
+    int middle;
+    int len = end;
+    while(start <= end){
+        middle = (start + end)/2;
+        if(middle < len && vet[t[middle]] < s && s <= vet[t[middle+1]]){
+            return middle+1;
+        }else if(vet[t[middle]] < s){
+            start = middle+1;
+        }else{
+            end = middle-1;
+        }
+    }
+    return -1;
+}
+
+int LIS() // n log(n)
+{
+    t[0] = 0;
+    int len = 0;
+    for (int i = 1; i < n; i++)
+    {
+        if (vet[t[0]] > vet[i])
+        {
+            t[0] = i;
+        }
+        else if (vet[t[len]] < vet[i])
+        {
+            len++;
+            t[len] = i;
+            r[t[len]] = t[len-1];
+        }
+        else
+        {
+            int index = ceilIndex(t, len, vet[i]);
+            t[index] = i;
+            r[t[index]] = t[index-1];
+        }
+    }
+
+    return len+1;
+}
+
 
 int main(int argc, char const *argv[])
 {
@@ -50,12 +100,9 @@ int main(int argc, char const *argv[])
         cin >> vet[i];
     }
 
-    for (int i = 0; i < n; i++)
-    {
-        memo[i] = 1;
-    }
+    memset(r, -1, sizeof(-1));
 
-    cout << solve() << '\n';
+    cout << LIS() << '\n';
 
 
     
