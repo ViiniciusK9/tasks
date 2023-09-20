@@ -9,18 +9,18 @@ typedef long long ll;
 int t, n, k;
 int vet[11234];
 
-bool memo[10034][220];
+int memo[10034][220];
 
-bool dp(int i, int sum)
+int dp(int i, int sum)
 {
     int ver = (sum < 0) ? abs(sum) + 100 : sum;
     if (i == n) return (sum % k == 0);
-    if (memo[i][ver] == true) return memo[i][ver];
+    if (memo[i][ver] != -1) return memo[i][ver];
 
-    bool ans;
-    ans = dp(i+1, (sum + vet[i]) % 100) || dp(i+1, (sum - vet[i]) % 100);
+    int ans;
+    ans = dp(i+1, (sum + vet[i]) % k) || dp(i+1, (sum - vet[i]) % k);
 
-    return memo[i][sum] = ans;
+    return memo[i][ver] = ans;
 }
 
 
@@ -37,7 +37,7 @@ int main(int argc, char const *argv[])
         {
             cin >> vet[i];
         }
-        memset(memo, false, sizeof(memo));
+        memset(memo, -1, sizeof(memo));
         cout << ((dp(1, vet[0]) == true) ? "Divisible" : "Not divisible") << '\n';
 
     }
