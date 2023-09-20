@@ -116,11 +116,11 @@ int main(int argc, char const *argv[])
         
         if (v1.empty() || v2.empty())
         {
-            cout << t << ". Blank!\n";
+            cout << ((t < 10) ? " " : "") << t << ". Blank!\n";
         } 
         else 
         {
-            cout << t << ". Length of longest match: " << dp(0, 0) << "\n";
+            cout << ((t < 10) ? " " : "") << t << ". Length of longest match: " << dp(0, 0) << "\n";
         }
 
         t++;
