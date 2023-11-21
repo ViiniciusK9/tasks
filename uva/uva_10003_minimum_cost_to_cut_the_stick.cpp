@@ -1,3 +1,4 @@
+// MINIMUM COST TO CUT THE STICK
 #include<bits/stdc++.h>
 
 using namespace std;
