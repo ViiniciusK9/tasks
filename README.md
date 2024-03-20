@@ -39,7 +39,7 @@
 
 Competitive programming is a mental sport where participants solve well-defined algorithmic problems within a specified period of time. It involves using programming skills to solve complex and diverse computational problems efficiently.
 
-This is a repository that contains several problems solved in online judges such as Codeforces, Beecriwd and others.
+This is a repository that contains several problems solved in online judges such as Codeforces, Beecrowd and others.
 
 ## :rocket: Technologies ##
 
