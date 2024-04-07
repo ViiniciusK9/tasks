@@ -7,6 +7,7 @@ using namespace std;
 
 vector<int> vet;
 array<array<int, 2060>, 15> memo;
+
 int solve(int n, int i)
 {
     if (n == 0) {
@@ -52,7 +53,6 @@ int main(int argc, char const *argv[])
     }
     
 
-    
     
 
     
