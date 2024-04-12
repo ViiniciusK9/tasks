@@ -19,7 +19,27 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int t, n, m, k, qnt, r;
+    cin >> t;
 
+    while (t--)
+    {
+        cin >> n >> m >> k;
+
+        qnt = n / m;
+        r = n%m;
+        if (r >= 1) {
+            r = r-1;
+        }
+
+        if ((qnt * (m-1) + r) <= k) {
+            cout << "NO\n";
+        } else {
+            cout << "YES\n";
+        }
+
+    }
+    
 
     
     return 0;
