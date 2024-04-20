@@ -41,10 +41,7 @@ int main(int argc, char const *argv[])
             i += n_ % 2;
             i_ += n_ % 2;
             it++;
-            // DBG(k);
-            // DBG(n_);
-            // DBG(i_);
-            // DBG(i);
+
             if (k <= i_)
             {
                 cout << std::fixed << std::setprecision(0) << (2 * k - 1) * (pow(2, it)) << '\n';
