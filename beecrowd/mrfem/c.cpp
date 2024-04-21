@@ -14,49 +14,42 @@ typedef vector<int> vi;
 typedef pair<int, int> pi;
 typedef pair<int, pi> pii;
 
-const int MAX = 262149;
-
-int n, aux;
-int memo[MAX];
-vi v;
-
-void solve() {
-    for (int i = n; i >= 1; i--)
-    {
-        memo[i] = v[i];
-        
-        if (i*2 <= n && i*2+1 <= n) {
-            memo[i] += max(memo[i*2], memo[(i*2)+1]);
-        } else if (i*2 <= n) {
-            memo[i] += memo[i*2];
-        } else if (i*2+1 <= n) {
-            memo[i] += memo[i*2+1];
-        }
-    }
-}
-
-
-
 int main(int argc, char const *argv[])
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    cin >> n;
-    n = pow(2, n) -1;
-    v.push_back(0);
-    for (int i = 0; i < n; i++)
-    {
-        cin >> aux;
-        v.PB(aux);
-    }
-    solve();
-    
-    for (int i = 0; i < n; i++)
-    {
-        cout << memo[i] << ' ';
-    }
-    cout << '\n';
 
+    int x1, y1, x2, y2, x3, y3, x4, y4;
+    int l, a;
+    cin >> x1 >> y1;
+    cin >> x2 >> y2;
+    cin >> x3 >> y3;
+    cin >> x4 >> y4;
+
+    if (x1 == x2) {
+        l = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+        if (y1 == y3) { 
+            a = sqrt((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3));
+        } else {
+            a = sqrt((x1 - x4) * (x1 - x4) + (y1 - y4) * (y1 - y4));
+        }
+    } else if (x1 == x3) {
+        l = sqrt((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3));
+        if (y1 == y2) { 
+            a = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+        } else {
+            a = sqrt((x1 - x4) * (x1 - x4) + (y1 - y4) * (y1 - y4));
+        }
+    } else if (x1 == x4) {
+        l = sqrt((x1 - x4) * (x1 - x4) + (y1 - y4) * (y1 - y4));
+        if (y1 == y3) { 
+            a = sqrt((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3));
+        } else {
+            a = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+        }
+    }
+
+    cout << (a*l) << '\n';
     
     return 0;
 }
