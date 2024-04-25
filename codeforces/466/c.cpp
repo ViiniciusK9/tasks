@@ -13,26 +13,15 @@ typedef long long ll;
 typedef pair<int, int> pi;
 typedef pair<int, pi> pii;
 
-set<pi> s;
+const int MAX = 5e5+3;
+
+
 vector<int> v;
-ll ans, n;
+vector<pi> v1;
+vector<pi> v2;
+ll ans, n, sum_total;
 
-void solve(int i, int j, ll s1, ll s2, ll s3)
-{
-    if (s.find({i, j}) != s.end()) return;
 
-    if (i > j || j < i || i == j) {
-        return;
-    }
-    
-    if (s1 == s2 && s2 == s3) {
-        ans++;
-        s.insert({i, j});
-    }
-
-    solve(i+1, j, s1+v[i+1], s2-v[i+1], s3);
-    solve(i, j-1, s1, s2-v[j-1], s3+v[j-1]);
-}
 
 int main(int argc, char const *argv[])
 {
@@ -46,12 +35,24 @@ int main(int argc, char const *argv[])
     for (int i = 0; i < n; i++)
     {
         cin >> aux;
-        if (i != 0 && i != n-1) 
-            sum += aux;
         v.PB(aux);
+        sum += aux;
+        v1.PB({sum, i});
     }
 
-    solve(0, n-1, v[0], sum, v[n-1]);
+    sum_total = sum;
+    
+    reverse(v.begin(), v.end());
+
+    sum = 0;
+    for (int i = 0; i < n; i++)
+    {
+        sum += v[i];
+        v2.PB({sum, i});
+    }
+    
+
+    
 
     cout << ans << '\n';
     
