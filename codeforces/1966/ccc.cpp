@@ -1,12 +1,12 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
 #define DBG(x) cout << "[" << #x << "]: " << x << endl
-#define F(x) std::fixed <<std::setprecision(1)<<(x)
-#define f first 
-#define s second 
-#define pb push_back 
+#define F(x) std::fixed << std::setprecision(1) << (x)
+#define f first
+#define s second
+#define pb push_back
 #define mp make_pair
 
 typedef long long ll;
@@ -24,11 +24,11 @@ int main(int argc, char const *argv[])
     cin >> t;
 
     set<int> s;
-    
+
     while (t--)
     {
         s.clear();
-        
+
         cin >> n;
         int sum = 0;
         for (int i = 0; i < n; i++)
@@ -37,45 +37,53 @@ int main(int argc, char const *argv[])
             s.insert(aux);
         }
 
+
+
         priority_queue<int> pq;
 
-        for (auto e : s) {
+        for (auto e : s)
+        {
             pq.push(-e);
         }
-        int at= 0;
+        int at = 0;
         int start = 0;
         while (!pq.empty())
         {
-            //cout << pq.top() << '\n';
+            // cout << pq.top() << '\n';
+
             at = abs(pq.top());
-            if (at - sum <= 0) {
-                // quem ta na vez perdeu
-                DBG(1);
-                break;
+
+            if (pq.size() % 2 == 0 && (at - sum) > 1 && start == 0)
+            {
+                sum = sum + (at - sum) - 1;
             }
-            sum = sum + (at - sum);
-            pq.pop();
-            
+            else {
+                sum = sum + (at - sum);
+                pq.pop();
+
+            }
+
             // troca
-            if (start == 0) {
+            if (start == 0)
+            {
                 start = 1;
-            } else {
+            }
+            else
+            {
                 start = 0;
             }
         }
 
-        if (start == 1) {
+        if (start == 1)
+        {
             cout << "Alice\n";
-        } else {
+        }
+        else
+        {
             cout << "Bob\n";
         }
-
-        
-        
     }
-    
 
-    
     return 0;
 }
 
