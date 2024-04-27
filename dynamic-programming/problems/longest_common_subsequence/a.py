@@ -90,6 +90,6 @@ def lcs(s1, s2):
                 dp[j] = 1 + prev_dp[j-1]
             else:
                 dp[j] = max(prev_dp[j], dp[j-1])
-        prev_dp = dp
+        prev_dp = dp.copy()
         dp = [0]*(m+1)
     return prev_dp[m]
