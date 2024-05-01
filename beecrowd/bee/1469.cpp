@@ -25,29 +25,26 @@ bool visited[505];
 int dfs(int source)
 {
 
+    int ans = 1000;
     qi q;
     visited[source] = true;
-    //DBG(source);
-    //DBG(idade[source]);
     for (auto nei : ng[source])
     {
-        //DBG(idade[nei]);
-        //DBG(nei);
+        visited[nei] = true;
+        ans = min(ans, idade[nei]);
         q.push(nei);
     }
-
-    int ans = 1000;
 
     while (!q.empty())
     {
         int at = q.front();
         q.pop();
 
-        if (!visited[at])
+        for (auto nei : ng[at])
         {
-            ans = min(ans, idade[ident[at]]);
-            visited[at] = true;
-            for (auto nei : ng[at]){
+            if (!visited[nei])
+            {
+                ans = min(ans, idade[at]);
                 q.push(nei);
             }
         }
@@ -61,10 +58,10 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    int n, m, i, u, v, a, b;
+    int n, m, u, v, a, b, consulta;
     char t;
 
-    cin >> n >> m >> i;
+    cin >> n >> m >> consulta;
 
     for (int i = 1; i <= n; i++)
     {
@@ -78,21 +75,42 @@ int main(int argc, char const *argv[])
         ng[v].pb(u);
     }
 
-    while (i--)
+    for (int i = 1; i <= n; i++)
+    {
+        cout << i << ": ";
+
+        for (int j = 0; j < ng[i].size(); j++)
+        {
+            cout << ng[ident[i]][j] << " ";
+        }
+        cout << '\n';
+    }
+
+    while (consulta--)
     {
         cin >> t;
         if (t == 'T')
         {
             cin >> a >> b;
-            //swap(idade[a], idade[b]);
+            // swap(idade[a], idade[b]);
             swap(ident[a], ident[b]);
+            for (int i = 1; i <= n; i++)
+            {
+                cout << i << ": ";
+                cout << "ident: " << ident[i] << ": ";
+                for (int j = 0; j < ng[i].size(); j++)
+                {
+                    cout << ng[i][j] << " ";
+                }
+                cout << '\n';
+            }c
         }
         else
         {
             cin >> a;
-            memset(visited, 0, sizeof(visited));
+            // memset(visited, 0, sizeof(visited));
 
-            cout << dfs(ident[a]) << '\n';
+            // cout << dfs(a) << '\n';
         }
     }
 
