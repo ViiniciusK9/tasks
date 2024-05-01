@@ -103,7 +103,7 @@ int main(int argc, char const *argv[])
                     cout << ng[i][j] << " ";
                 }
                 cout << '\n';
-            }c
+            }
         }
         else
         {
