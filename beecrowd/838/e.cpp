@@ -19,7 +19,22 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int c, n, aux;
+    map<int, int> m;
 
+    cin >> c >> n;
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> aux;
+        m[aux]++;
+    }
+    
+    for (auto value : m)
+    {
+        cout << value.first << " = " << value.second << '\n';
+    }
+    
 
     
     return 0;

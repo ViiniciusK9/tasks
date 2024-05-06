@@ -19,7 +19,23 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int n, x, y, z;
 
+    cin >> n >> x >> y >> z;
+
+    if (x >= y) {
+        if (z <= x && z >= y) {
+            cout << "Yes\n";
+        } else {
+            cout << "No\n";
+        }
+    } else {
+        if (z <= y && z >= x) {
+            cout << "Yes\n";
+        } else {
+            cout << "No\n";
+        }
+    }
 
     
     return 0;

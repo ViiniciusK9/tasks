@@ -19,7 +19,32 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int t, m, n, ans, i, j;
+    string a, b;
 
+    cin >> t;
+    while (t--)
+    {
+        cin >> n >> m;
+        cin >> a >> b;
+
+        ans = 0;
+        i = j = 0;
+
+        while (i < n && j < m)
+        {
+            if (a[i] == b[j]) {
+                ans++;
+                i++;
+                j++;
+            } else {
+                j++;
+            }
+        }
+        cout << ans << '\n';
+
+    }
+    
 
     
     return 0;

@@ -3,11 +3,11 @@
 using namespace std;
 
 #define DBG(x) cout << "[" << #x << "]: " << x << endl
-#define FF(x) std::fixed <<std::setprecision(1)<<(x)
-#define F first 
-#define S second 
-#define PB push_back 
-#define MP make_pair
+#define F(x) std::fixed <<std::setprecision(1)<<(x)
+#define f first 
+#define s second 
+#define pb push_back 
+#define mp make_pair
 
 typedef long long ll;
 typedef vector<int> vi;
