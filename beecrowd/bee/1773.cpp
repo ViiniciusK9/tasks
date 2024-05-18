@@ -22,10 +22,10 @@ set<int> my_keys;
 array<bool, MAX> visited;
 array<bool, MAX> vis;
 
-bool bfs(int source)
+void bfs(int source)
 {
-    int flag = false;
     queue<int> q;
+    queue<int> qa;
 
     for (auto k : keys[source])
     {
@@ -36,45 +36,47 @@ bool bfs(int source)
 
     for (auto vi : ng[source])
     {
-        if (my_keys.find(vi) != my_keys.end())
-        {
-            q.push(vi);
-        }
+        q.push(vi);
     }
-
-    while (!q.empty())
+    int ini = 0, at;
+    while (true)
     {
-        int cur = q.front();
-        q.pop();
-        if (!visited[cur])
+        ini = my_keys.size();
+        while (!q.empty())
         {
-            flag = true;
-            visited[cur] = true;
-            for (auto k : keys[cur])
+            int cur = q.front();
+            q.pop();
+            if (!visited[cur])
             {
-                my_keys.insert(k);
-            }
+                if (my_keys.find(cur) != my_keys.end()) {
+                    visited[cur] = true;
 
-            for (auto vi : ng[cur])
-            {
-                if (my_keys.find(vi) != my_keys.end())
-                {
-                    q.push(vi);
+                    for (auto k : keys[cur])
+                    {
+                        my_keys.insert(k);
+                    }
+
+                    for (auto vi : ng[cur])
+                    {
+                        q.push(vi);
+                    }
+                } else {
+                    qa.push(cur);
                 }
             }
         }
-    }
+        at = my_keys.size();
 
-    bool f = false;
-    for (int i = 1; i <= n; i++)
-    {
-        if (visited[i] == false)
-        {
-            f = true;
+        if (ini == at) {
+            break;
         }
+        while (!qa.empty())
+        {
+            q.push(qa.front());
+            qa.pop();
+        }
+        
     }
-
-    return flag && f;
 }
 
 int main(int argc, char const *argv[])
@@ -93,7 +95,6 @@ int main(int argc, char const *argv[])
             ng[i].clear();
             keys[i].clear();
         }
-        
 
         for (int i = 0; i < m; i++)
         {
@@ -108,26 +109,21 @@ int main(int argc, char const *argv[])
             keys[sala].insert(i);
         }
 
-        bool flag = true;
-        while (flag)
-        {
-            flag = bfs(1);
-            if (flag)
-            {
-                visited.fill(false);
-            }
-        }
-
-        bool f = true;
+        bfs(1);
+        int ans = 1;
         for (int i = 1; i <= n; i++)
         {
-            if (visited[i] == false)
-            {
-                f = false;
+            if(visited[i] == false) {
+                ans = 0;
+                break;
             }
         }
-        cout << (f == true ? "sim\n" : "nao\n");
-
+        
+        if (ans == 1) {
+            cout << "sim\n";
+        } else {
+            cout << "nao\n";
+        }
     }
 
     return 0;
