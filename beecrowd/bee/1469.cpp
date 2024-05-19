@@ -3,7 +3,7 @@
 using namespace std;
 
 #define DBG(x) cout << "[" << #x << "]: " << x << endl
-#define FF(x) std::fixed << std::setprecision(1) << (x)
+#define F(x) std::fixed << std::setprecision(1) << (x)
 #define f first
 #define s second
 #define pb push_back
@@ -11,41 +11,53 @@ using namespace std;
 
 typedef long long ll;
 typedef vector<int> vi;
-typedef queue<int> qi;
-typedef stack<int> si;
 typedef pair<int, int> pi;
 typedef pair<int, pi> pii;
 
+const int MAX = int(512);
+
 map<int, int> idade;
 map<int, int> ident;
+array<bool, MAX> visited;
 
-vi ng[505];
-bool visited[505];
+vi adj[MAX];
 
-int dfs(int source)
+int bfs(int source)
 {
+    //DBG(source);
+    int ans = 10000;
+    source = ident[source];
+    queue<int> q;
 
-    int ans = 1000;
-    qi q;
-    visited[source] = true;
-    for (auto nei : ng[source])
+    for (auto vi : adj[source])
     {
-        visited[nei] = true;
-        ans = min(ans, idade[nei]);
-        q.push(nei);
+        q.push(vi);
     }
 
     while (!q.empty())
     {
-        int at = q.front();
-        q.pop();
 
-        for (auto nei : ng[at])
+        int cur = q.front();
+        q.pop();
+        int aux;
+
+        //DBG(cur);
+
+        if (!visited[cur])
         {
-            if (!visited[nei])
+            for (auto vi : ident)
             {
-                ans = min(ans, idade[at]);
-                q.push(nei);
+                if (vi.second == cur) {
+                    aux = vi.first;
+                    break;
+                }
+            }
+            
+            ans = min(ans, idade[aux]);
+            visited[cur] = true;
+            for (auto vi : adj[cur])
+            {
+                q.push(vi);
             }
         }
     }
@@ -58,60 +70,54 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    int n, m, u, v, a, b, consulta;
-    char t;
+    int n, m, i, id;
 
-    cin >> n >> m >> consulta;
-
-    for (int i = 1; i <= n; i++)
+    while (cin >> n >> m >> i)
     {
-        cin >> idade[i];
-        ident[i] = i;
-    }
-
-    for (int i = 0; i < m; i++)
-    {
-        cin >> u >> v;
-        ng[v].pb(u);
-    }
-
-    for (int i = 1; i <= n; i++)
-    {
-        cout << i << ": ";
-
-        for (int j = 0; j < ng[i].size(); j++)
+        for (int i = 0; i < MAX; i++)
         {
-            cout << ng[ident[i]][j] << " ";
+            adj[i].clear();
         }
-        cout << '\n';
-    }
+        
 
-    while (consulta--)
-    {
-        cin >> t;
-        if (t == 'T')
+        for (int i = 1; i <= n; i++)
         {
-            cin >> a >> b;
-            // swap(idade[a], idade[b]);
-            swap(ident[a], ident[b]);
-            for (int i = 1; i <= n; i++)
+            cin >> id;
+            idade[i] = id;
+            ident[i] = i;
+        }
+        int u, v;
+        for (int i = 0; i < m; i++)
+        {
+            cin >> u >> v;
+            adj[v].pb(u);
+        }
+
+        char op;
+        int a, b;
+
+        while (i--)
+        {
+            cin >> op;
+
+            if (op == 'T') 
             {
-                cout << i << ": ";
-                cout << "ident: " << ident[i] << ": ";
-                for (int j = 0; j < ng[i].size(); j++)
-                {
-                    cout << ng[i][j] << " ";
+                cin >> a >> b;
+                swap(ident[a], ident[b]);
+            } 
+            else 
+            {
+                cin >> a;
+                visited.fill(false);
+                int ans = bfs(a);
+                if (ans == 10000) {
+                    cout << "*\n";
+                } else {
+                    cout << ans << '\n';
                 }
-                cout << '\n';
             }
         }
-        else
-        {
-            cin >> a;
-            // memset(visited, 0, sizeof(visited));
-
-            // cout << dfs(a) << '\n';
-        }
+        
     }
 
     return 0;
