@@ -11,7 +11,7 @@ using namespace std;
 
 typedef long long ll;
 typedef vector<int> vi;
-typedef pair<int, int> pi;
+typedef pair<int, ll> pi;
 typedef pair<int, pi> pii;
 
 const int MAX = int(1e5 + 10);
@@ -33,38 +33,26 @@ void bfs(int source, int dest)
         pi cur = q.front();
         q.pop();
 
-        int at, w;
+        ll at, w;
         at = cur.first;
         w = cur.second;
 
-        
-        
         if (!visited[at])
         {
             visited[at] = true;
+
+            if (source != at && ma[source][at] == 0) {
+                ma[source][at] = w;
+            }
 
             if (at == dest) {
                 ma[source][dest] = w;
                 return;
             }
 
-            int adest, aat;
-            if (dest > at) {
-                adest = at;
-                aat = dest;
-            } else {
-                adest = dest;
-                aat = at;
-            }
-            if (ma[aat][adest] != 0)
+            if (ma[at][dest] != 0)
             {
-                ma[source][dest] = ma[aat][adest] + w;
-                return;
-            }
-
-            if (ma[adest][aat] != 0)
-            {
-                ma[source][dest] = ma[adest][aat] + w;
+                ma[source][dest] = ma[at][dest] + w;
                 return;
             }
 
@@ -97,31 +85,28 @@ int main(int argc, char const *argv[])
         {
             adj[i].clear();
         }
-        
-
 
         for (int i = 1; i <= n - 1; i++)
         {
             cin >> v >> w;
             adj[i].pb({v, w});
-            adj[v].pb({u, w});
-            if (i < v) {
-                ma[v][i] = w;
-            } else {
-                ma[i][v] = w;
-            }
+            adj[v].pb({i, w});
+            
+            ma[v][i] = w;
+            ma[i][v] = w;
+            
         }
         int q, a, b;
         cin >> q;
-
+        bool fir = true;
         while (q--)
         {
             cin >> a >> b;
-            DBG(a);
-            DBG(b);
+            //DBG(a);
+            //DBG(b);
             if (b == a)
             {
-                cout << "0 ";
+                cout << (fir == false ? " " : "") << "0";
             }
             else if (b > a)
             {
@@ -129,29 +114,29 @@ int main(int argc, char const *argv[])
 
                 if (ma[a][b] != 0)
                 {
-                    cout << ma[a][b] << '\n';
+                    cout << (fir == false ? " " : "") << ma[a][b];
                 }
                 else
                 {
                     visited.fill(false);
                     bfs(a, b);
-                    cout << ma[a][b] << " ";
+                    cout << (fir == false ? " " : "") << ma[a][b];
                 }
             }
             else
             {
                 if (ma[a][b] != 0)
                 {
-                    cout << ma[a][b] << '\n';
+                    cout << (fir == false ? " " : "") << ma[a][b];
                 }
                 else
                 {
                     visited.fill(false);
                     bfs(a, b);
-                    cout << ma[a][b] << " ";
+                    cout << (fir == false ? " " : "") << ma[a][b];
                 }
             }
-            
+            fir = false;
         }
         cout << '\n';
     }
