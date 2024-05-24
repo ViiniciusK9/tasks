@@ -78,22 +78,22 @@ int main(int argc, char const *argv[])
             {
                 cin >> a1;
                 if (a1 == 1) {
-                    adj[i][j].pb({});
+                    adj[i][j].pb({i-1, j});
                 }
 
                 cin >> a1;
                 if (a1 == 1) {
-                    adj[i][j].pb({});
+                    adj[i][j].pb({i+1, j});
                 }
 
                 cin >> a1;
                 if (a1 == 1) {
-                    adj[i][j].pb({});
+                    adj[i][j].pb({i, j-1});
                 }
 
                 cin >> a1;
                 if (a1 == 1) {
-                    adj[i][j].pb({});
+                    adj[i][j].pb({i, j+1});
                 }
             }
         }
@@ -120,9 +120,6 @@ int main(int argc, char const *argv[])
 
 
     }
-    
-    
-
     
     return 0;
 }
