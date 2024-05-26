@@ -1,12 +1,12 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
 #define DBG(x) cout << "[" << #x << "]: " << x << endl
-#define F(x) std::fixed <<std::setprecision(1)<<(x)
-#define f first 
-#define s second 
-#define pb push_back 
+#define F(x) std::fixed << std::setprecision(1) << (x)
+#define f first
+#define s second
+#define pb push_back
 #define mp make_pair
 
 typedef long long ll;
@@ -14,14 +14,112 @@ typedef vector<int> vi;
 typedef pair<int, int> pi;
 typedef pair<int, pi> pii;
 
+const int MAX = int(10123);
+
+vector<int> adj[MAX];
+array<bool, MAX> visited;
+array<int, MAX> dist;
+
+pi bfs(int source)
+{
+    int ans = 0;
+    int id = 0;
+    queue<int> q;
+    q.push(source);
+    dist[source] = 0;
+
+    while (!q.empty())
+    {
+        int cur = q.front();
+        q.pop();
+
+        if (!visited[cur])
+        {
+            if (dist[cur] > ans)
+            {
+                ans = dist[cur];
+                id = cur;
+            }
+            // ans = max(ans, dist[cur]);
+
+            visited[cur] = true;
+
+            for (auto vi : adj[cur])
+            {
+                q.push(vi);
+                if (dist[vi] == 0)
+                {
+                    dist[vi] = dist[cur] + 1;
+                }
+            }
+        }
+    }
+    return {ans, id};
+}
+
 int main(int argc, char const *argv[])
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int n, m, d;
 
+    cin >> n >> m >> d;
+    int u, v;
+    for (int i = 0; i < m; i++)
+    {
+        cin >> u >> v;
+        adj[u].pb(v);
+        adj[v].pb(u);
+    }
 
-    
+    pi ans = {int(1e9), 0};
+    int ind = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        visited.fill(false);
+        dist.fill(0);
+        pi at = bfs(i);
+        if (ans.f > at.f)
+        {
+            ans = at;
+            ind = i;
+        }
+    }
+    // cout << ind << '\n';
+    // cout << ans.f << " " << ans.s << '\n';
+
+    int cria = 1;
+    int an = n;
+
+    /*
+        NÃO DEU '-'
+    */
+
+    an++;
+    int indd = ans.s;
+    adj[indd].pb(an);
+    indd++;
+    an++;
+    visited.fill(false);
+    dist.fill(0);
+    while (bfs(ans.s).f <= d)
+    {
+
+        adj[indd].pb(an);
+        indd++;
+        an++;
+        visited.fill(false);
+        dist.fill(0);
+        cria++;
+        if (cria == 3) {
+            cria = (d+1);
+            break;
+        }
+    }
+
+    cout << cria << " " << cria << '\n';
+
     return 0;
 }
 

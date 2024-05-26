@@ -19,7 +19,25 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int a, b, c;
 
+    cin >> a >> b >> c;
+
+    set<int> s1;
+    s1.insert(a);
+    s1.insert(b);
+    s1.insert(c);
+    
+    for (int i = 0; i <= 3; i++)
+    {
+        if (s1.find(i) == s1.end()) {
+            cout << i << '\n';
+            break;
+        }
+    }
+    
+
+    
 
     
     return 0;

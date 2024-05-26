@@ -1,28 +1,40 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#define ll long long
+#define endl '\n'
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
+#define pb push_back
 
 using namespace std;
 
-#define DBG(x) cout << "[" << #x << "]: " << x << endl
-#define F(x) std::fixed <<std::setprecision(1)<<(x)
-#define f first 
-#define s second 
-#define pb push_back 
-#define mp make_pair
-
-typedef long long ll;
-typedef vector<int> vi;
-typedef pair<int, int> pi;
-typedef pair<int, pi> pii;
-
-int main(int argc, char const *argv[])
-{
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+int main(int argc, char *argv[]) {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    int n;
+    cin >> n;
+    vector<string> v(n);
+    for (auto &i : v) {
+        cin >> i;
+    }
 
 
+    list<string> l;
+    for (int i = 1; i <= n; i++) {
+        string aux;
+        cin >> aux;
+        l.push_front(aux);
+    }
 
-    
+    set<string> s;
+    for (int i = 0; i < v.size() - 1; i++) {
+        cout << l.back() << " ";
+        s.insert(v[i]);
+        while (s.count(l.back())) {
+            l.pop_back();
+        }
+    }
+    cout << l.back() << endl;
+
     return 0;
 }
-
-// g++ -O2 -Wall nome.cpp -o nome

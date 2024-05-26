@@ -19,6 +19,20 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int e, v;
+
+    cin >> e >> v;
+
+    int h = 19;
+    int m = 0;
+
+    int e1 = e / v;
+    e1 += h;
+    e1 = e1 % 24;
+    int m1 = e % v;
+    m1 = m1 * 60;
+    m1 = m1 / v;
+    cout << (e1 < 10 ? "0" : "") << e1 << ":" << (m1 < 10 ? "0" : "") << m1 << '\n';
 
 
     
