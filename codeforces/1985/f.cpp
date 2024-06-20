@@ -23,9 +23,9 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    int t;
+    ll t;
     cin >> t;
-    int h, n;
+    ll h, n;
     vi a;
     vi c;
     while (t--)
@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
         a.clear();
         c.clear();
         cin >> h >> n;
-        int aux;
+        ll aux;
         for (int i = 0; i < n; i++)
         {
             cin >> aux;
@@ -48,7 +48,7 @@ int main(int argc, char const *argv[])
 
         priority_queue<pii> pq;
 
-        int vida = h;
+        ll vida = h;
         ll ans = 0;
 
         while (vida > 0)
