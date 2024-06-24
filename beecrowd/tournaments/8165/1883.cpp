@@ -64,6 +64,7 @@ void bfss(pi s)
 
         if (!visited[x][y])
         {
+            visited[x][y] = true;
             if (mat[x][y] == 'E') {
                 
             }
