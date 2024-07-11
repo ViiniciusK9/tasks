@@ -19,7 +19,32 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int t;
 
+    cin >> t;
+
+    while (t--)
+    {
+        int a, b, c;
+        cin >> a >> b >> c;
+
+        int i = 5;
+        while (i--)
+        {
+            if (a <= b  && a <= c) {
+                a++;
+            } else if (b <= a && b <= c) {
+                b++;
+            } else {
+                c++;
+            }
+        }
+
+        cout << a * b * c << '\n';
+        
+
+    }
+    
 
     
     return 0;
