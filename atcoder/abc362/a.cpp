@@ -19,7 +19,18 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int r, g, b;
+    string c;
 
+    cin >> r >> g >> b >> c;
+
+    if (c == "Blue") {
+        cout << min(r, g) << '\n';
+    } else if (c == "Red") {
+        cout << min(b, g) << '\n';
+    } else {
+        cout << min(r, b) << '\n';
+    }
 
     
     return 0;
