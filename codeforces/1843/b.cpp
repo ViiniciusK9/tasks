@@ -26,38 +26,32 @@ int main(int argc, char const *argv[])
     while (t--)
     {
         int n;
-        string s1;
         cin >> n;
-        cin >> s1;
-        string aux;
-        int ant = -1;
-        for (int i = 0; i < s1.size(); i++)
+        vi v;
+        for (int i = 0; i < n; i++)
         {
-            if (s1[i] == '0' && ant != 0) {
-                aux.pb('0');
-                ant = 0;
-            } else if (s1[i] == '1') {
-                aux.pb('1');
+            int aux;
+            cin >> aux;
+            v.pb(aux);
+        }
+
+        int op = 0;
+        int ant = 0;
+        ll sum = 0;
+        for (int i = 0; i < n; i++)
+        {
+            sum+=abs(v[i]);
+            if (v[i] < 0 && ant == 0) {
+                op++;
                 ant = 1;
+            } else if (v[i] >= 1) {
+                ant = 0;
             }
         }
 
-        int z, u;
-        z = u = 0;
-        for (int i = 0; i < aux.size(); i++)
-        {
-            if (aux[i] == '0') {
-                z++;
-            } else {
-                u++;
-            }
-        }
-        
-        if (z >= u) {
-            cout << "No\n";
-        } else {
-            cout << "Yes\n";
-        }
+
+        cout << sum <<" " << op << '\n';
+
 
     }
     

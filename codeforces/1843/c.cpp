@@ -8,6 +8,8 @@ using namespace std;
 #define s second 
 #define pb push_back 
 #define mp make_pair
+#define left(p) ((p) << 1)
+#define right(p) (left(p) + 1)
 
 typedef long long ll;
 typedef vector<int> vi;
@@ -20,27 +22,32 @@ int main(int argc, char const *argv[])
     cin.tie(0);
 
     int t;
-
     cin >> t;
-
     while (t--)
     {
-        int n, k;
-        cin >> n >> k;
-        int ans = 0;
-        while (n > 1)
+        ll n;
+        cin >> n;
+
+        ll start = n;
+        ll sum = 0;
+        while (start != 1)
         {
-            n-=(k-1);
-            ans++;
+            sum += start;
+
+            start= start / 2;
+            
         }
 
-        cout << ans << '\n';
+        cout << sum  + 1<< '\n';
         
+
+
     }
     
 
+
     
-    return 0;  
+    return 0;
 }
 
 // g++ -O2 -Wall nome.cpp -o nome

@@ -20,40 +20,37 @@ int main(int argc, char const *argv[])
     cin.tie(0);
 
     int t;
-
+    int n;
     cin >> t;
 
     while (t--)
     {
-        ll n;
+        /* code */
+
         cin >> n;
 
-        bitset<64> a = n;
+        vi v;
 
-        set<ll> st;
-        st.insert(n);
-
-        for (int i = 0; i < 64; i++)
+        for (int i = 0; i < n; i++)
         {
-            if (a[i] == 1)
-            {
-                bitset<64> b = (1 << i);
-                ll num = ((ll)1 << i);
-                if (n - num >= (ll)1)
-                {
-                    st.insert(n - num);
-                }
-            }
+            int aux;
+            cin >> aux;
+            v.pb(aux);
         }
 
-        cout << st.size() << '\n';
-        bool fir = true;
-        for (auto el : st)
+        sort(v.begin(), v.end());
+
+        int i = 0;
+        int j = n-1;
+        int ans = 0;
+        while (i < j)
         {
-            cout << (fir == true ? "" : " ") << el;
-            fir = false;
+            ans += (v[j]-v[i]);
+            j--;
+            i++;
         }
-        cout << '\n';
+
+        cout << ans << '\n';
     }
 
     return 0;

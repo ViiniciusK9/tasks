@@ -26,41 +26,29 @@ int main(int argc, char const *argv[])
     while (t--)
     {
         int n;
-        string s1;
         cin >> n;
+        string s1;
+
         cin >> s1;
         string aux;
-        int ant = -1;
+        int ind = -1;
         for (int i = 0; i < s1.size(); i++)
         {
-            if (s1[i] == '0' && ant != 0) {
-                aux.pb('0');
-                ant = 0;
-            } else if (s1[i] == '1') {
-                aux.pb('1');
-                ant = 1;
+            if (i == 0) {
+                ind = 0;
+            } else if (s1[i] == s1[ind]) {
+                aux.pb(s1[i]);
+                ind = i+1;
+                i+=1;
             }
         }
 
-        int z, u;
-        z = u = 0;
-        for (int i = 0; i < aux.size(); i++)
-        {
-            if (aux[i] == '0') {
-                z++;
-            } else {
-                u++;
-            }
-        }
+        cout << aux << '\n';
         
-        if (z >= u) {
-            cout << "No\n";
-        } else {
-            cout << "Yes\n";
-        }
+
 
     }
-    
+
 
     
     return 0;

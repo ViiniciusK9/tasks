@@ -19,28 +19,10 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    int t;
 
-    cin >> t;
-
-    while (t--)
-    {
-        int n, k;
-        cin >> n >> k;
-        int ans = 0;
-        while (n > 1)
-        {
-            n-=(k-1);
-            ans++;
-        }
-
-        cout << ans << '\n';
-        
-    }
-    
 
     
-    return 0;  
+    return 0;
 }
 
 // g++ -O2 -Wall nome.cpp -o nome
