@@ -11,19 +11,16 @@ using namespace std;
 
 typedef long long ll;
 typedef vector<int> vi;
-typedef pair<int, int> pi;
-typedef pair<int, pi> pii;
+typedef pair<int, int> ii;
+typedef pair<int, ii> iii;
 
 int main(int argc, char const *argv[])
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    [](int i){
-        cout << "i: " << i << '\n';
-    }(1);
 
-    
+
     
     return 0;
 }
