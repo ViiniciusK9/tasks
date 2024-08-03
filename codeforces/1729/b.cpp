@@ -20,38 +20,33 @@ int main(int argc, char const *argv[])
     cin.tie(0);
 
     int t;
-
     cin >> t;
-
     while (t--)
     {
-        int n, x, y;
-        cin >> n >> x >> y;
+        int n;
+        cin >> n;
+        string s1;
+        cin >> s1;
 
-        vi v(n, 1);
+        string aux;
+        int val = 0;
+        int cnt = 1;
 
-        
-        int aux = -1;
-        for (int i = x; i < n; i++)
+        for (int i = s1.size()-1; i >= 0; i--)
         {
-            v[i] = aux;
-            aux *= -1;
+            if (s1[i] == '0') {
+                int a = (s1[i-2] - '0') * 10;
+                a += s1[i-1] - '0';
+                aux.pb('a'+(a-1));
+                i-=2;
+            } else {
+                int a = s1[i] - '0';
+                aux.pb('a'+(a-1));
+            }
         }
-        aux = -1;
-        for (int i = y-2; i >= 0; i--)
-        {
-            v[i] = aux;
-            aux *= -1;
-        }
-        
-        for (int i = 0; i < n; i++)
-        {
-            cout << (i == 0 ? "" : " ") << v[i];
-        }
-        
-        
 
-        cout << '\n';
+        reverse(aux.begin(), aux.end());
+        cout << aux << '\n';
     }
 
     return 0;
