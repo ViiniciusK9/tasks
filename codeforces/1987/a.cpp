@@ -11,15 +11,31 @@ using namespace std;
 
 typedef long long ll;
 typedef vector<int> vi;
-typedef pair<int, int> ii;
-typedef pair<int, ii> iii;
+typedef pair<int, int> pi;
+typedef pair<int, pi> pii;
 
 int main(int argc, char const *argv[])
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int t;
 
+    cin >> t;
+
+    while (t--)
+    {
+        int n, k;
+        cin >> n >> k;
+
+        int soma = 1;
+        soma += (n-1) * k;
+
+        cout << soma << '\n';
+
+
+    }
+    
 
     
     return 0;

@@ -19,7 +19,32 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int t;
 
+    cin >> t;
+
+    while (t--)
+    {   
+        int n;
+        cin >> n;
+
+        if (n - 2 > 26) {
+
+            if (n-1 > 52) {
+
+                cout <<  char('a' + n-52-1) << "zz\n";
+
+            } else {
+                cout << "a" << char('a' + n-28) << "z\n";
+            }
+
+
+        } else {
+            cout << "aa" << char('a' + n-2-1) << '\n';
+        }
+
+    }
+    
 
     
     return 0;

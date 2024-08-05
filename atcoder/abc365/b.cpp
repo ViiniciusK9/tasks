@@ -19,7 +19,35 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int n;
+    cin >> n;   
+    int mi = INT_MIN;
+    vi v;
+    int aux;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> aux;
+        v.pb(aux);
+        
+    }
 
+    int mx = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (v[i] > v[mx]) {
+            mx = i;
+        }
+    }
+    v[mx] = -1;
+    for (int i = 0; i < n; i++)
+    {
+        if (v[i] > v[mx]) {
+            mx = i;
+        }
+    }
+
+    cout << mx +1 << '\n';
+    
 
     
     return 0;

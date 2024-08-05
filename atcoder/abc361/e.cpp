@@ -11,8 +11,8 @@ using namespace std;
 
 typedef long long ll;
 typedef vector<int> vi;
-typedef pair<int, int> ii;
-typedef pair<int, ii> iii;
+typedef pair<int, int> pi;
+typedef pair<int, pi> pii;
 
 int main(int argc, char const *argv[])
 {

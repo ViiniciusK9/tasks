@@ -19,7 +19,37 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int t;
 
+    cin >> t;
+
+    while (t--)
+    {
+        int n, m;
+
+        cin >> n >> m;
+
+        double x = 10 / n;
+
+        ll r = (n*m);
+
+        ll mx = 0;
+
+        ll at = 1;
+        ll val = 10;
+        while (val <= r)
+        {
+            //DBG(val);
+            mx = max(mx, (((r/val)) * val));
+
+            
+            val *=10;
+        }
+        
+        cout << mx << '\n';
+
+    }
+    
 
     
     return 0;

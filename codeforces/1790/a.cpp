@@ -19,7 +19,29 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int t;
 
+    cin >> t;
+    string pi = "314159265358979323846264338327";
+    while (t--)
+    {
+
+        string s1;
+        cin >> s1;
+        int ans = 0;
+        for (int i = 0; i < s1.size(); i++)
+        {
+            if (s1[i]==pi[i]) {
+                ans++;
+            } else {
+                break;
+            }
+        }
+
+        cout << ans << '\n';
+        
+    }
+    
 
     
     return 0;

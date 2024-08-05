@@ -19,6 +19,35 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int t;
+
+    cin >> t;
+
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        string s1;
+
+        cin >> s1;
+        string aux;
+        int ind = -1;
+        for (int i = 0; i < s1.size(); i++)
+        {
+            if (i == 0) {
+                ind = 0;
+            } else if (s1[i] == s1[ind]) {
+                aux.pb(s1[i]);
+                ind = i+1;
+                i+=1;
+            }
+        }
+
+        cout << aux << '\n';
+        
+
+
+    }
 
 
     

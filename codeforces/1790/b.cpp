@@ -19,7 +19,35 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int t;
 
+    cin >> t;
+
+    while (t--)
+    {
+        int n, r, s;
+        cin >> n >> s >> r;
+
+        vi v;
+        v.pb(abs(r-s));
+        int qnt = r%(n-1);
+        for (int i = 0; i < n-1; i++)
+        {
+            v.pb(r/(n-1) + (qnt >= 1 ? 1 : 0));
+            qnt--;
+        }
+
+        bool fir = true;
+        for (auto el : v)
+        {
+            cout <<(fir ? "" : " ") << el ;
+            fir = false;
+        }
+        cout << '\n';
+        
+
+    }
+    
 
     
     return 0;

@@ -19,7 +19,34 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int t;
 
+    cin >> t;
+
+    while (t--)
+    {   int n;
+        cin >> n;   
+        int aux;
+        int p1, p2;
+        p1 = p2 = 0;
+        for (int i = 0; i < n; i++)
+        {
+            cin >> aux;
+            if (aux % 2 == 0) {
+                p1++;
+            } else {
+                p2++;
+            }
+        }
+
+        if (p2 % 2 == 0) {
+            cout << "YES\n";
+        } else {
+            cout << "NO\n";
+        }
+        
+    }
+    
 
     
     return 0;

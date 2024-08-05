@@ -19,7 +19,28 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int t;
 
+    cin >> t;
+
+    while(t--) {
+        int n;
+
+        cin >> n;
+        string s1, s2, a1, a2;
+
+        cin >> s1 >> s2;
+        bool ans = true;
+        for (int i = 0; i < n; i++) {
+            if (s1[i] == 'R' && s2[i] != 'R') {
+                ans = false;
+            } else if (s1[i] != 'R' && s2[i] == 'R') {
+                ans = false;
+            }
+        }
+
+        cout << (ans ? "YES\n" : "NO\n");
+    }
 
     
     return 0;

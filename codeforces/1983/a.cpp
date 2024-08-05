@@ -19,7 +19,25 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int t;
 
+    int n;
+    cin >> t;
+    
+    while (t--)
+    {
+        cin >> n;
+        
+        for (int i = 1; i <= n; i++)
+        {
+            cout << (i == 1 ? "" : " ") <<  i;
+        }
+
+        cout << '\n';
+        
+
+    }
+    
 
     
     return 0;
