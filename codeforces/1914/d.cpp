@@ -14,9 +14,6 @@ typedef vector<int> vi;
 typedef pair<int, int> ii;
 typedef pair<int, ii> iii;
 
-const int MAX = 2e5+10;
-
-array<bool, MAX> vis;
 
 int main(int argc, char const *argv[])
 {
@@ -25,36 +22,55 @@ int main(int argc, char const *argv[])
 
     int t;
     cin >> t;
-
     while (t--)
     {
         int n;
         cin >> n;
-        vis.fill(false);    
 
-        vi v(n);
+        vi a(n);
+        vi b(n);
+        vi c(n);
 
-        bool ans = true;
         for (int i = 0; i < n; i++)
         {
-            cin >> v[i];
-            if (i == 0) {
-                vis[v[i]] = true;
-            } else {
-                if (vis[v[i]-1] == false && vis[v[i]+1] == false) {
-                    ans = false;
-                }
-                vis[v[i]] = true;
-            }
+            cin >> a[i];
         }
 
-        if (ans) {
-            cout << "YES\n";
-        } else {
-            cout << "NO\n";
+        for (int i = 0; i < n; i++)
+        {
+            cin >> b[i];
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            cin >> c[i];
         }
         
+        
 
+
+
+        ll ans = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                for (int k = 0; k < 3; k++)
+                {
+                    if (i != j && j != k && i != k) {
+                        ans = max(ans, arr[0][i]+arr[1][j] +arr[2][k]);
+                    }
+                }
+                
+            }
+            
+        }
+
+        cout << ans << '\n';
+        
+
+
+        
 
     }
     
