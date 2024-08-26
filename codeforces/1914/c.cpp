@@ -10,13 +10,9 @@ using namespace std;
 #define mp make_pair
 
 typedef long long ll;
-typedef vector<int> vi;
+typedef vector<ll> vi;
 typedef pair<int, int> ii;
 typedef pair<int, ii> iii;
-
-const int MAX = 2e5+10;
-
-array<bool, MAX> vis;
 
 int main(int argc, char const *argv[])
 {
@@ -25,35 +21,43 @@ int main(int argc, char const *argv[])
 
     int t;
     cin >> t;
-
     while (t--)
     {
-        int n;
-        cin >> n;
-        vis.fill(false);    
+        int n, k;
+        cin >> n >> k;
 
-        vi v(n);
+        vi a(n);
+        vi b(n);
+        vi pref(n+1);
 
-        bool ans = true;
         for (int i = 0; i < n; i++)
         {
-            cin >> v[i];
-            if (i == 0) {
-                vis[v[i]] = true;
-            } else {
-                if (vis[v[i]-1] == false && vis[v[i]+1] == false) {
-                    ans = false;
-                }
-                vis[v[i]] = true;
-            }
-        }
-
-        if (ans) {
-            cout << "YES\n";
-        } else {
-            cout << "NO\n";
+            cin >> a[i];
+            pref[i+1] = pref[i] + a[i];
         }
         
+        for (int i = 0; i < n; i++)
+        {
+            cin >> b[i];
+        }
+
+        ll exp = 0;
+        ll mx = 0;
+
+        for (int i = 0; i < n; i++)
+        {
+            ll q1 = i+1;
+            mx = max(mx, b[i]);
+            ll q2 = k-q1;
+            if (q2 < 0 || i+1 > n) {
+                break;
+            }
+            exp = max(pref[q1] + mx*q2, exp);
+        }
+
+        cout << exp << '\n';
+        
+
 
 
     }

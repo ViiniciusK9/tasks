@@ -14,10 +14,6 @@ typedef vector<int> vi;
 typedef pair<int, int> ii;
 typedef pair<int, ii> iii;
 
-const int MAX = 2e5+10;
-
-array<bool, MAX> vis;
-
 int main(int argc, char const *argv[])
 {
     ios_base::sync_with_stdio(0);
@@ -25,36 +21,20 @@ int main(int argc, char const *argv[])
 
     int t;
     cin >> t;
-
     while (t--)
     {
-        int n;
-        cin >> n;
-        vis.fill(false);    
+        int x, y;
+        cin >> x >> y;
 
-        vi v(n);
-
-        bool ans = true;
-        for (int i = 0; i < n; i++)
-        {
-            cin >> v[i];
-            if (i == 0) {
-                vis[v[i]] = true;
+        if (x == y) {
+            cout << "1 1\n";
+        } else {
+            if (y%x == 0) {
+                cout << "1 " << y/x << '\n';
             } else {
-                if (vis[v[i]-1] == false && vis[v[i]+1] == false) {
-                    ans = false;
-                }
-                vis[v[i]] = true;
+                cout << "0 0\n";
             }
         }
-
-        if (ans) {
-            cout << "YES\n";
-        } else {
-            cout << "NO\n";
-        }
-        
-
 
     }
     
