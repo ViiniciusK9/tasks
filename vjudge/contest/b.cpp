@@ -19,34 +19,8 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    int t;
-    cin >> t;
 
-    int m, n, l, r;
 
-    while (t--)
-    {
-        cin >> n >> m >> l >> r;
-
-        int l1 = 0;
-        int r1 = 0;
-
-        int ql = abs(l);
-        int qr = r;
-
-        if (m > ql) {
-            l1 = l;
-            int rm = m - ql;
-            r1 = rm;
-
-            cout << l1 << " " << r1 << '\n';
-
-        } else {
-            l1 = - (min(ql, m));
-            cout << l1 << " " << r1 << '\n';
-        }
-
-    }
     
     return 0;
 }
