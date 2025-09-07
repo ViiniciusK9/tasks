@@ -19,7 +19,33 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    int n;
+    cin >> n;
+    int x, y;
+    int mix, miy, maxx, may;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> x >> y;
 
+        if (i == 0) {
+            mix = x;
+            miy = y;
+            maxx = x;
+            may = y;
+        }
+
+        mix = min(x, mix);
+        miy = min(y, miy);
+        maxx = max(x, maxx);
+        may = max(y, may);
+
+    }
+
+    int l = abs(mix - maxx) + 2;
+    int r = abs(miy - may) + 2;
+
+    cout << (2*l + 2*r) << '\n';
+    
 
     
     return 0;

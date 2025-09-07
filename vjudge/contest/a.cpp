@@ -19,7 +19,30 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    string s;
+    cin >> s;
 
+
+
+    char tem[3];
+    tem[0] = 'T';
+    tem[1] = 'A';
+    tem[2] = 'P';
+    int ind = 0;
+    for (int i = 0; i < s.size(); i++)
+    {
+        char at = s[i];
+        if (at == tem[ind]) {
+            ind++;
+        }
+
+        if (ind == 3) {
+            break;
+        }
+    }
+
+    cout << (ind == 3 ? "S\n" : "N\n");
+    
 
     
     return 0;
